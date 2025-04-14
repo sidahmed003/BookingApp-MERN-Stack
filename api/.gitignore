@@ -1,1 +1,14 @@
+# Ignore node_modules
+node_modules/
+
+# Ignore le fichier .env
 .env
+
+# Ignore les fichiers log
+*.log
+
+# Ignore les fichiers de configuration de l'IDE
+.vscode/
+
+# Ignore les fichiers de dépendances et de builds
+/dist/
