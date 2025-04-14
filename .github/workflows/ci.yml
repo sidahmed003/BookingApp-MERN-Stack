@@ -35,6 +35,9 @@ jobs:
       working-directory: ./client
       run: npm install
 
+    - name: Fix permissions
+      run: sudo chmod -R 755 .
+
     - name: Build client
       working-directory: ./client
       run: npm run build
