@@ -1,0 +1,51 @@
+name: CI BookingApp
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18] # ou 20 si ton projet l'utilise
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    # Backend (api)
+    - name: Install backend dependencies
+      working-directory: ./api
+      run: npm install
+
+    - name: Run backend tests
+      working-directory: ./api
+      run: npm test
+
+    # Frontend (client)
+    - name: Install client dependencies
+      working-directory: ./client
+      run: npm install
+
+    - name: Build client
+      working-directory: ./client
+      run: npm run build
+
+    # Admin (admin)
+    - name: Install admin dependencies
+      working-directory: ./admin
+      run: npm install
+
+    - name: Build admin
+      working-directory: ./admin
+      run: npm run build
