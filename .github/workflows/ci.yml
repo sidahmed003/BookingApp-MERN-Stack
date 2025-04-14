@@ -2,9 +2,11 @@ name: CI BookingApp
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - master  # Modifie 'main' en 'master' si ta branche principale s'appelle 'master'
   pull_request:
-    branches: [ main ]
+    branches:
+      - master  # Assure-toi que le workflow s'exécute aussi lors d'un pull request vers master
 
 jobs:
   build-and-test:
@@ -12,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18] # ou 20 si ton projet l'utilise
+        node-version: [18]  # Ou 20, selon ta version de Node.js
 
     steps:
     - name: Checkout code
